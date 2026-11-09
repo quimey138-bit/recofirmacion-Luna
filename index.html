@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Luna XV · Reconfirmá tu asistencia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,600;0,700;1,500&family=Poppins:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#0a0a0c; --black-2:#16171b; --silver:#cfd3d8; --soft:#eef0f2; --line:rgba(207,211,216,.28);
+  --chrome:linear-gradient(135deg,#fff,#9aa0a8 55%,#f4f5f6);
+  --script:'Great Vibes','Brush Script MT',cursive; --serif:'Playfair Display',Georgia,serif; --sans:'Poppins',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{background:#030304;font-family:var(--sans);color:var(--soft);display:flex;justify-content:center;-webkit-tap-highlight-color:transparent}
+body.locked{overflow:hidden;height:100svh}
+.stage{width:min(440px,100%);min-height:100svh;background:radial-gradient(circle at 50% 0,#2a2c33 0,var(--black) 55%);position:relative;overflow:hidden}
+h1,h2,h3{font-weight:400}
+.chrome{background:linear-gradient(110deg,#fff 5%,#aeb4bc 30%,#fff 50%,#7d848e 70%,#fff 95%);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s linear infinite}
+@keyframes shine{to{background-position:220% center}}
+
+/* ---------- Portada ---------- */
+#cover{position:fixed;inset:0;margin:auto;width:min(440px,100%);z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:32px 24px;overflow:hidden;
+  background:radial-gradient(circle at 50% 24%,rgba(255,255,255,.16),transparent 28%),linear-gradient(155deg,#2b2d35,#101115 45%,#030304);transition:opacity .9s ease,visibility .9s}
+#cover.gone{opacity:0;visibility:hidden}
+.kicker{font-size:11px;letter-spacing:.42em;text-transform:uppercase;color:rgba(238,240,242,.7)}
+.cover-name{font-family:var(--script);font-size:clamp(100px,30vw,132px);line-height:1.15;padding:8px 24px 14px;margin:4px 0 14px}
+.env{position:relative;width:250px;height:165px;border:0;background:none;cursor:pointer;perspective:900px;filter:drop-shadow(0 24px 24px rgba(0,0,0,.55));transition:transform .3s}
+.env:hover{transform:translateY(-4px)}
+.env-body,.flap{position:absolute;inset:0;border-radius:8px}
+.env-body{background:linear-gradient(135deg,#f8f9fa,#b7bdc5 45%,#eef1f4)}
+.env-body::after{content:"";position:absolute;inset:0;clip-path:polygon(0 100%,50% 45%,100% 100%);background:linear-gradient(5deg,#aab0b8,#f7f8f9);border-radius:8px}
+.flap{clip-path:polygon(0 0,100% 0,50% 62%);background:linear-gradient(160deg,#fff,#aab0b8 55%,#e8ebee);transform-origin:top;transition:transform .9s cubic-bezier(.2,.8,.2,1);z-index:2}
+.env.open .flap{transform:rotateX(180deg)}
+.seal{position:absolute;left:50%;top:50%;width:54px;height:54px;margin:-27px 0 0 -27px;border-radius:50%;z-index:3;display:grid;place-items:center;
+  background:radial-gradient(circle at 33% 27%,#fff 0 7%,#dfe3e8 22%,#8b9199 64%,#eef1f4);box-shadow:0 8px 18px rgba(0,0,0,.4);font:italic 700 24px var(--serif);color:#1b1d22;transition:.4s}
+.env.open .seal{opacity:0;transform:scale(.4)}
+.hint{margin-top:26px;font:italic 13px var(--serif);color:rgba(226,229,234,.6);animation:bob 2s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-6px)}}
+
+/* ---------- Secciones ---------- */
+section{padding:56px 26px;position:relative;text-align:center}
+.hero{padding-top:70px}
+.neon{font-family:var(--script);font-size:clamp(54px,15vw,66px);line-height:1.1;color:#f4f4f5;text-shadow:0 0 6px rgba(255,255,255,.8),0 0 22px rgba(210,216,226,.45)}
+.years{font:italic 700 clamp(96px,28vw,128px)/1 var(--serif);letter-spacing:-.06em;margin:10px 0 6px;padding:8px 6px 14px}
+.photo{width:min(300px,80%);aspect-ratio:3/4;margin:18px auto 0;border-radius:26px;object-fit:cover;display:none;border:1px solid rgba(255,255,255,.2);box-shadow:0 26px 50px -18px #000}
+.copy{max-width:340px;margin:28px auto 0;text-align:left;font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:20px;line-height:1.55;color:var(--soft)}
+.copy p+p{margin-top:16px}
+.copy .big{font-family:var(--serif);font-style:italic;font-weight:500;font-size:22px;line-height:1.4;text-align:center}.star{position:absolute;color:#fff;text-shadow:0 0 14px #fff;pointer-events:none;animation:tw 4s ease-in-out infinite}
+@keyframes tw{0%,100%{opacity:.2;transform:scale(.8)}50%{opacity:.9;transform:scale(1.15) rotate(15deg)}}
+
+.kick2{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:rgba(225,229,235,.6);margin-bottom:6px}
+.halo{position:relative;display:block;margin:72px 0 64px}
+.halo::before,.halo::after{content:"";position:absolute;left:50%;top:50%;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.halo::before{width:230px;height:230px;border:1px solid rgba(255,255,255,.16);box-shadow:0 0 70px rgba(255,255,255,.08),inset 0 0 44px rgba(255,255,255,.05)}
+.halo::after{width:300px;height:300px;border:1px dashed rgba(255,255,255,.12);animation:spin 50s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.halo .years{position:relative;z-index:1}
+.dateRow{display:flex;align-items:center;justify-content:center;gap:16px;margin:26px auto 0}
+.dateRow>i{width:54px;height:1px;background:linear-gradient(90deg,transparent,var(--silver))}
+.dateRow>i:last-child{transform:scaleX(-1)}
+.dateRow div{text-align:center;line-height:1.2}
+.dateRow span{display:block;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.dateRow b{display:block;font:700 54px/1 var(--serif);color:#fff;margin:6px 0 2px}
+.dateRow em{display:block;font:400 28px var(--script);color:var(--silver);margin-bottom:6px}
+.panel{border:1px solid rgba(255,255,255,.14);border-radius:26px;background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.025));backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 22px 44px rgba(0,0,0,.35)}
+.count{padding:28px 14px 24px}
+.count h2,.card h3,.rsvp h2{font-family:var(--script);font-size:40px;color:#fff;margin-bottom:16px}
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.cd div{padding:14px 2px 10px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)}
+.cd b{display:block;font:700 clamp(26px,8vw,34px)/1 var(--serif);font-variant-numeric:tabular-nums}
+.cd span{display:block;margin-top:8px;font-size:8px;letter-spacing:.14em;text-transform:uppercase;color:rgba(233,236,241,.55)}
+
+.cards{display:flex;flex-direction:column;gap:18px;padding-top:0}
+.card{padding:28px 22px;text-align:left}
+.card h3{margin-bottom:8px}
+.card .ic{width:52px;height:52px;border-radius:16px;display:grid;place-items:center;font-size:24px;margin-bottom:14px;background:var(--chrome);box-shadow:inset 0 1px 1px #fff}
+.card strong{display:block;font-size:15px;margin-bottom:4px}
+.card p{font-size:13px;line-height:1.7;color:rgba(232,235,239,.72)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;padding:13px 24px;border:0;border-radius:999px;cursor:pointer;font:700 13px var(--sans);letter-spacing:.03em;text-decoration:none;color:#0b0c0e;background:var(--chrome);box-shadow:0 10px 22px rgba(0,0,0,.3);transition:transform .25s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--soft);border:1px solid var(--line);box-shadow:none}
+.btn.wa{background:linear-gradient(135deg,#25d366,#128c46);color:#fff}
+
+.rsvp{margin:0 18px;padding:34px 22px 30px;background:#efeef0;color:#1a1a1e;border-radius:28px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.rsvp h2{color:#1a1a1e}
+.rsvp>p{font-size:13.5px;color:#55555b;margin-bottom:20px}
+.field{display:block;text-align:left;margin-bottom:12px;font-size:12px;font-weight:600;color:#44444a}
+.field input,.field select{width:100%;margin-top:6px;padding:13px 14px;border:1px solid #d3d3d6;border-radius:12px;background:#fff;font:400 14px var(--sans);color:#1a1a1e}
+.field input:focus,.field select:focus{outline:3px solid rgba(127,133,142,.35);border-color:#7f858e}
+.actions{display:grid;gap:10px;margin-top:18px}
+.actions .btn{margin:0;width:100%;padding:15px}
+.actions .no{background:#1a1a1e;color:#fff}
+.err{min-height:18px;margin-top:10px;font-size:12px;color:#b3261e}
+footer{padding:36px 24px 110px;text-align:center;font:italic 14px var(--serif);color:rgba(255,255,255,.45)}
+
+.sticky{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom));transform:translate(-50%,120px);z-index:40;transition:transform .5s cubic-bezier(.2,.8,.2,1);margin:0;white-space:nowrap}
+.sticky.show{transform:translate(-50%,0)}
+
+.rv{opacity:0;transform:translateY(26px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01ms!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="locked">
+<div class="stage">
+
+  <div id="cover">
+    <i class="ball" style="top:7%;left:-36px;width:96px;height:96px"></i>
+    <i class="ball" style="bottom:9%;right:-34px;width:78px;height:78px;opacity:.7"></i>
+    <span class="star" style="top:13%;right:14%;font-size:40px">✦</span>
+    <span class="star" style="bottom:16%;left:12%;font-size:22px;animation-delay:1.2s">✦</span>
+    <span class="star" style="top:34%;left:9%;font-size:14px;animation-delay:2.2s">✦</span>
+    <p class="kicker">Falta poco para mis XV</p>
+    <h1 class="cover-name chrome">Luna</h1>
+    <button class="env" id="env" aria-label="Abrir la invitación">
+      <span class="env-body"></span><span class="flap"></span><span class="seal">L</span>
+    </button>
+    <p class="hint">Tocá el sobre para abrir ✦</p>
+  </div>
+
+  <main id="invite">
+    <section class="hero">
+      <i class="ball" style="top:26px;left:-40px;width:106px;height:106px"></i>
+      <i class="ball" style="top:300px;right:-34px;width:74px;height:74px;opacity:.7"></i>
+      <i class="ball" style="top:640px;left:-24px;width:48px;height:48px;opacity:.6"></i>
+      <span class="star" style="top:56px;right:28px;font-size:36px">✦</span>
+      <span class="star" style="top:170px;left:30px;font-size:16px;animation-delay:1s">✦</span>
+      <span class="star" style="top:250px;right:60px;font-size:20px;animation-delay:2s">✦</span>
+      <span class="star" style="top:470px;left:22px;font-size:26px;animation-delay:.6s">✦</span>
+      <span class="star" style="top:560px;right:24px;font-size:14px;animation-delay:1.6s">✦</span>
+      <p class="kick2 rv">Mis quince años</p>
+      <h2 class="neon rv">¡Mis XV están por llegar!</h2>
+      <div class="halo rv">
+      <div class="dateRow"><i></i><div><span>Viernes</span><b>4</b><em>diciembre</em><span>2026 · 21:30 hs</span></div><i></i></div>
+      </div>
+      <img id="foto" class="photo rv" alt="Luna">
+      <div class="copy rv">
+        <p class="big">💖✨ ¡La cuenta regresiva para mis XV está llegando a su fin! ✨💖</p>
+        <p>¡Cada vez falta menos para vivir una noche soñada y estoy preparando todo para que sea una fiesta inolvidable! 🪩🥂</p>
+        <p>Quiero compartir este momento tan especial con vos, disfrutar, bailar, reírnos y pasar una noche increíble.</p>
+        <p>Por eso, necesito que me <strong>reconfirmes</strong> si vas a acompañarme. ¡Estoy contando los días y quiero saber si nos vamos a encontrar en la pista para celebrar juntos! 💃🏼</p>
+        <p>💋 ¡Prepará tu outfit, las ganas de bailar y toda la energía, porque mis XV se vienen con TODO!</p>
+      </div>
+    </section>
+
+    <section style="padding-top:8px">
+      <div class="panel count rv">
+        <h2>Faltan</h2>
+        <div class="cd" role="timer" aria-live="off">
+          <div><b id="d">--</b><span>Días</span></div>
+          <div><b id="h">--</b><span>Horas</span></div>
+          <div><b id="m">--</b><span>Min</span></div>
+          <div><b id="s">--</b><span>Seg</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cards" style="padding-top:8px">
+      <article class="panel card rv">
+        <h3>El festejo</h3>
+        <strong>Viernes 4 de diciembre · 21:30 hs</strong>
+        <p>Quinta Las Herederas</p>
+        <a class="btn" href="https://maps.app.goo.gl/hXDpHBT6L8HvfYKp9" target="_blank" rel="noopener">📍 Cómo llegar</a>
+      </article>
+      <article class="panel card rv">
+        <h3>Micro desde Malvinas Argentinas</h3>
+        <strong>20:00 hs · Municipalidad de Malvinas Argentinas</strong>
+        <p>Desde ahí partimos rumbo al salón para encontrarnos todos y comenzar esta noche tan esperada.</p>
+      </article>
+      <article class="panel card rv">
+        <h3>¿Vas por tu cuenta?</h3>
+        <p>¡Genial! Te espero en la Quinta Las Herederas desde las 21:30 hs. Avisame cuando llegues y vení con todo para brillar. ✨</p>
+      </article>
+    </section>
+
+    <section id="rsvp-wrap" style="padding-top:8px">
+      <form class="rsvp rv" id="rsvp" novalidate>
+        <h2>Reconfirmá tu asistencia</h2>
+        <p>Contame si nos vemos en la pista. Se abre WhatsApp con el mensaje listo para enviar. 💕</p>
+        <label class="field">Tu nombre y apellido
+          <input id="nombre" autocomplete="name" placeholder="Ej: Sofía Pérez" required>
+        </label>
+        <label class="field">¿Cuántas personas van?
+          <select id="cant"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select>
+        </label>
+        <label class="field">¿Cómo vas?
+          <select id="viaje">
+            <option value="en el micro desde Malvinas Argentinas (20:00 hs)">En el micro desde Malvinas</option>
+            <option value="por mi cuenta">Por mi cuenta</option>
+          </select>
+        </label>
+        <div class="actions">
+          <button type="button" class="btn" id="si">✅ Sí, voy</button>
+          <button type="button" class="btn no" id="no">No puedo ir</button>
+        </div>
+        <p class="err" id="err" role="alert"></p>
+      </form>
+    </section>
+
+    <footer>Nos vemos para brillar juntos ✨💕</footer>
+  </main>
+
+  <a class="btn sticky" id="sticky" href="#rsvp-wrap">💌 Reconfirmar asistencia</a>
+</div>
+
+<script>
+/* ====== CONFIGURACIÓN: editá solo esto ====== */
+const CONFIG = {
+  WHATSAPP: "5491151347863",            // número de WhatsApp (sin + ni espacios)
+  FOTO: "",                             // ← opcional: ruta o URL de la foto de Luna (ej: "luna.jpg")
+  FIESTA: "2026-12-04T21:30:00-03:00"   // fecha y hora del festejo (hora de Argentina)
+};
+/* ============================================ */
+
+const $ = id => document.getElementById(id);
+
+
+// Abrir el sobre
+$("env").addEventListener("click", () => {
+  $("env").classList.add("open");
+  setTimeout(() => {
+    $("cover").classList.add("gone");
+    document.body.classList.remove("locked");
+    scrollTo(0, 0);
+    setTimeout(() => $("sticky").classList.add("show"), 900);
+  }, 850);
+});
+
+// Aparición suave al hacer scroll
+const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll(".rv").forEach(el => io.observe(el));
+
+// Ocultar el botón fijo cuando se ve el formulario
+new IntersectionObserver(es => $("sticky").style.visibility = es[0].isIntersecting ? "hidden" : "visible", { threshold: .3 }).observe($("rsvp"));
+
+// Cuenta regresiva
+const target = new Date(CONFIG.FIESTA).getTime();
+function tick() {
+  let t = Math.max(0, target - Date.now());
+  const p = n => String(n).padStart(2, "0");
+  $("d").textContent = Math.floor(t / 864e5);
+  $("h").textContent = p(Math.floor(t % 864e5 / 36e5));
+  $("m").textContent = p(Math.floor(t % 36e5 / 6e4));
+  $("s").textContent = p(Math.floor(t % 6e4 / 1e3));
+}
+tick(); setInterval(tick, 1000);
+
+// Confirmación por WhatsApp
+function enviar(voy) {
+  const nombre = $("nombre").value.trim();
+  if (!nombre) { $("err").textContent = "Escribí tu nombre para poder enviar el mensaje."; $("nombre").focus(); return; }
+  $("err").textContent = "";
+  const n = $("cant").value, viaje = $("viaje").value;
+  const msg = voy
+    ? `¡Hola Luna! Soy ${nombre} y te reconfirmo que voy a tus XV 🎉\nVamos ${n} ${n === "1" ? "persona" : "personas"}, ${viaje}. ¡Nos vemos en la pista! 💃🏼✨`
+    : `¡Hola Luna! Soy ${nombre}. Lamentablemente no voy a poder acompañarte en tus XV 💔 ¡Que la pases increíble!`;
+  window.open(`https://wa.me/${CONFIG.WHATSAPP}?text=${encodeURIComponent(msg)}`, "_blank", "noopener");
+}
+$("si").addEventListener("click", () => enviar(true));
+$("no").addEventListener("click", () => enviar(false));
+</script>
+</body>
+</html>
