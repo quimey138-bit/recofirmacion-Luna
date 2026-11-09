@@ -203,7 +203,7 @@ footer{padding:36px 24px 110px;text-align:center;font:italic 14px var(--serif);c
           </select>
         </label>
         <div class="actions">
-          <button type="button" class="btn" id="si">✅ Sí, voy</button>
+          <button type="button" class="btn" id="si">Sí, voy</button>
           <button type="button" class="btn no" id="no">No puedo ir</button>
         </div>
         <p class="err" id="err" role="alert"></p>
@@ -239,7 +239,7 @@ if (CONFIG.ALIAS) { $("alias").textContent = CONFIG.ALIAS; $("regalo").hidden = 
 $("copiar").addEventListener("click", async () => {
   try { await navigator.clipboard.writeText( CONFIG.ALIAS); $("copiar").textContent = "✅ ¡Copiado!"; }
   catch { $("copiar").textContent = "Copialo a mano 💕"; }
-  setTimeout(() => $("copiar").textContent = " Copiar alias", 2200);
+  setTimeout(() => $("copiar").textContent = "Copiar alias", 2200);
 });
 
 // Abrir el sobre
